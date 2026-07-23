@@ -16,4 +16,13 @@ public:
         if(p->val !=q->val) return false;
         return isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
     }
+    bool check(TreeNode* root, TreeNode* subRoot){
+        if(isSameTree(root,subRoot)) return true;
+        return isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
+     }
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        if(root==NULL && subRoot==NULL) return true;
+        if(root==NULL || subRoot==NULL) return false;
+        return check(root,subRoot);
+    }
 };
